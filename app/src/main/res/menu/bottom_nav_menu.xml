@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/home"
+        android:title="@string/title_home" />
+
+    <item
+        android:id="@+id/navigation_dashboard"
+        android:icon="@drawable/syringe"
+        android:title="@string/imunitation" />
+
+    <item
+        android:id="@+id/navigation_notifications"
+        android:icon="@drawable/scale"
+        android:title="@string/nutrition" />
+
+    <item
+        android:id="@+id/navigation_mom"
+        android:icon="@drawable/woman"
+        android:title="@string/mom"/>
+
+</menu>
