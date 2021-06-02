@@ -8,4 +8,14 @@
     <string name="mom">Ibu</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="status_vaccine">Status Vaccine</string>
+    <string name="fungsi">Fungsi</string>
+    <string name="function_example_vaccine">Mencegah penyakit Hepatitis B yang dapat menyebabkan kerusakan hati</string>
+    <string name="indication">Indikasi</string>
+    <string name="example_indication_vaccine">Anak yang belum pernah menerima imunisasi Hepatits B1</string>
+    <string name="indikasi_kontra">Indikasi Kontra</string>
+    <string name="example_indication_contra_vaccine">Riwayat anafilaksis setelah vaksinasi Hepatitis B sebelumnya</string>
+    <string name="after_vaccine">Kejadian Pasca Imunisasi</string>
+    <string name="example_after_vaccine">Reaksi lokal seperti nyeri, kemerahan, bengkak yang ringan, dan bersifat sementara. Kadang disertai demam ringan selama 1 - 2 hari.</string>
+    <string name="fab_detail_vaccine">set status vaccine</string>
 </resources>

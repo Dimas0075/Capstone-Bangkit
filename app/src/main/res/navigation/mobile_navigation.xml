@@ -12,14 +12,18 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_imunitation"
         android:name="its.nugrohodimas.capstonebangkit.ui.imunitation.ImunitationFragment"
         android:label="@string/imunitation"
         tools:layout="@layout/fragment_imunitation" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_nutrition"
         android:name="its.nugrohodimas.capstonebangkit.ui.nutrition.NutritionFragment"
         android:label="@string/nutrition"
         tools:layout="@layout/fragment_nutrition" />
+    <fragment
+        android:id="@+id/navigation_mom"
+        android:name="its.nugrohodimas.capstonebangkit.ui.mom.MomFragment"
+        android:label="@string/mom" />
 </navigation>
