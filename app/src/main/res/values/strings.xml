@@ -19,4 +19,6 @@
     <string name="example_after_vaccine">Reaksi lokal seperti nyeri, kemerahan, bengkak yang ringan, dan bersifat sementara. Kadang disertai demam ringan selama 1 - 2 hari.</string>
     <string name="fab_detail_vaccine">set status vaccine</string>
     <string name="profile">Profile</string>
+    <string name="pertanyaan_vaksin">Apakah sudah divaksin?</string>
+    <string name="image_description">image</string>
 </resources>

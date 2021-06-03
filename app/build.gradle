@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
 }
 
 apply from: '../shared_dependencies.gradle'
@@ -40,6 +41,10 @@ android {
 
 dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
+    implementation 'com.google.firebase:firebase-firestore-ktx:23.0.0'
+    implementation 'com.firebaseui:firebase-ui-firestore:6.2.1'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation platform('com.google.firebase:firebase-bom:28.0.1')
     implementation project(path: ':core')
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
