@@ -1,13 +1,9 @@
 package its.nugrohodimas.capstonebangkit.ui.imunitation
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import its.nugrohodimas.core.domain.usecase.KiaUseCase
 
-class ImunitationViewModel : ViewModel() {
-
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
-    }
-    val text: LiveData<String> = _text
+class ImunitationViewModel(private val kiaUseCase: KiaUseCase) : ViewModel() {
+    val date =kiaUseCase.getDateVaccine().asLiveData()
 }

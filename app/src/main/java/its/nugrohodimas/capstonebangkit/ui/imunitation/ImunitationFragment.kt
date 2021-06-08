@@ -12,11 +12,8 @@ import its.nugrohodimas.capstonebangkit.ui.MainAdapter
 
 class ImunitationFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: ImunitationViewModel
     private var _binding: FragmentImunitationBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -24,13 +21,11 @@ class ImunitationFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        dashboardViewModel =
-            ViewModelProvider(this).get(ImunitationViewModel::class.java)
 
         _binding = FragmentImunitationBinding.inflate(inflater, container, false)
 
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText("Jadwal Imunisasi"))
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText("Riwayat"))
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setText("Schedule"))
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setText("History"))
         binding.tabLayout.tabGravity = TabLayout.GRAVITY_FILL
         val adapter =
             MainAdapter(container!!.context, requireFragmentManager(), binding.tabLayout.tabCount)

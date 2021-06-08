@@ -7,12 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.room.Room
 import its.nugrohodimas.capstonebangkit.databinding.FragmentScheduleImunitationBinding
 import its.nugrohodimas.capstonebangkit.ui.adapter.VaccAdapter
+import its.nugrohodimas.capstonebangkit.ui.imunitation.ImunitationViewModel
 import its.nugrohodimas.core.data.source.local.entity.VaccineEntity
-import its.nugrohodimas.core.domain.model.Vaccine
+import its.nugrohodimas.core.data.source.local.room.KiaDatabase
 import org.json.JSONException
 import org.json.JSONObject
+import org.koin.android.viewmodel.ext.android.viewModel
 import java.io.IOException
 import java.nio.charset.Charset
 
@@ -23,7 +26,10 @@ class ScheduleImunitationFragment : Fragment() {
 
     private val binding get() = _binding!!
 
-    private val dataList: MutableList<Vaccine> = mutableListOf()
+    private val imunitationViewModel: ImunitationViewModel by viewModel()
+
+    private val dataList = ArrayList<VaccineEntity>()
+    private var date = ArrayList<VaccineEntity>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,21 +42,42 @@ class ScheduleImunitationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        try {
-            val obj = JSONObject(loadJSONFromAsset())
-            val userArray = obj.getJSONArray("vaccine")
-            for (i in 0 until userArray.length()) {
-                val vaccine = userArray.getJSONObject(i)
-                val list = Vaccine(
-                    idVaccine = vaccine.getInt("id"),
-                    vaccineFunction = vaccine.getString("vaccineFunc"),
-                    vaccineName = vaccine.getString("name")
-                )
-                dataList.add(list)
+        Thread {
+            val db =
+                Room.databaseBuilder(requireContext(), KiaDatabase::class.java, "Health").build()
+            date = db.kiaDao().getAllVaccine() as ArrayList<VaccineEntity>
+            if (date.isEmpty()) {
+                try {
+                    val obj = JSONObject(loadJSONFromAsset())
+                    val userArray = obj.getJSONArray("vaccine")
+                    for (i in 0 until userArray.length()) {
+                        val vaccine = userArray.getJSONObject(i)
+                        val list = VaccineEntity(
+                            idVaccine = vaccine.getInt("id"),
+                            vaccineFunction = vaccine.getString("vaccineFunc"),
+                            vaccineName = vaccine.getString("name"),
+                            vaccineIndication =  vaccine.getString("indication"),
+                            vaccinePostEvent =  vaccine.getString("postImmunization")
+
+                        )
+                        dataList.add(list)
+                    }
+                    db.kiaDao().insertListVaccine(dataList)
+                    val linearLayoutManager = LinearLayoutManager(context)
+                    binding.rvVaccine.layoutManager = linearLayoutManager
+                    val customAdapter = VaccAdapter(dataList)
+                    binding.rvVaccine.adapter = customAdapter
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+            } else {
+                val linearLayoutManager = LinearLayoutManager(context)
+                binding.rvVaccine.layoutManager = linearLayoutManager
+                val customAdapter = VaccAdapter(date)
+                binding.rvVaccine.adapter = customAdapter
             }
-        } catch (e: JSONException) {
-            e.printStackTrace()
-        }
+            Log.d("Test data DB", date.toString())
+        }.start()
 
         val linearLayoutManager = LinearLayoutManager(context)
         binding.rvVaccine.layoutManager = linearLayoutManager
